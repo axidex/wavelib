@@ -3992,37 +3992,36 @@ void imodwt2(wt2_object wt, double *wavecoeff, double *oup) {
 	free(filt);
 }
 
-double* getWT2Coeffs(wt2_object wt,double* wcoeffs, int level,char *type, int *rows, int *cols) {
+double* getWT2Coeffs(wt2_object wt,double* wcoeffs, int level, char type, int *rows, int *cols) {
 	int J,iter,t;
 	double *ptr;
 	J = wt->J;
 	// Error Check
-
 	if (level > J || level < 1) {
 		printf("Error : The data is decomposed into %d levels so the acceptable values of level are between 1 and %d", J, J);
 		exit(-1);
 	}
-
-	if (!strcmp(type, "A") && level != J) {
+	if (type == 'A' && level != J) {
 		printf("Approximation Coefficients are only available for level %d", J);
 		exit(-1);
 	}
-
-	if (!strcmp(type, "A")) {
+	
+	if (type == 'A') {
 		t = 0;
 		iter = t;
 	}
-	else if (!strcmp(type, "H")) {
+	else if (type == 'H') {
 		t = 1;
 		iter = t;
 	}
-	else if (!strcmp(type, "V")) {
+	else if (type == 'V') {
 		t = 2;
 		iter = t;
 	}
-	else if (!strcmp(type, "D")) {
+	else if (type == 'D') {
 		t = 3;
 		iter = t;
+		
 	}
 	else {
 		printf("Only four types of coefficients are accessible A, H, V and D \n");
@@ -4032,6 +4031,7 @@ double* getWT2Coeffs(wt2_object wt,double* wcoeffs, int level,char *type, int *r
 	iter += (J - level) * 3;
 
 	ptr = wcoeffs+wt->coeffaccess[iter];
+	
 	*rows = wt->dimensions[2 * (J - level)];
 	*cols = wt->dimensions[2 * (J - level)+1];
 

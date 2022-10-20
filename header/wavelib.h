@@ -280,7 +280,7 @@ double* modwt2(wt2_object wt, double *inp);
 
 void imodwt2(wt2_object wt, double *wavecoeff, double *oup);
 
-double* getWT2Coeffs(wt2_object wt,double* wcoeffs, int level,char *type, int *rows, int *cols);
+double* getWT2Coeffs(wt2_object wt,double* wcoeffs, int level,char type, int* rows, int* cols);
 
 void dispWT2Coeffs(double *A, int row, int col);
 
