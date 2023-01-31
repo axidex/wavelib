@@ -5,6 +5,11 @@ project(${PROJECT_NAME} C)
 
 include(GNUInstallDirs)
 
+if (UNIX)
+    set( CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -Wall --std=c++20 -fPIC" )
+    set( CMAKE_C_FLAGS  "${CMAKE_C_FLAGS} -Wall -fPIC" )
+endif (UNIX)
+
 # src root path
 set(WAVELIB_SRC_ROOT ${PROJECT_SOURCE_DIR} CACHE PATH "Wavelib source root")
 # binary output by default
